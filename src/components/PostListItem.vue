@@ -17,18 +17,20 @@
       </div>
     </div>
 
-    <div
-      class="post-date text-faded"
-      :title="post.publishedAt | humanFriendlyDate"
-    > {{post.publishedAt | diffForHumans}}</div>
+    <div class="post-date text-faded">
+      <AppDate :timestamp="post.publishedAt"></AppDate>
+    </div>
   </div>
 </template>
 
 <script>
   import sourceData from '@/data.json'
-  import moment from 'moment'
+  import AppDate from './AppDate'
   export default {
     name: 'PostListItem',
+    components: {
+      AppDate
+    },
     props: {
       post: {
         required: true,
@@ -44,14 +46,6 @@
         // const postIdsArray = Object.keys(postIds)
         // return postIdsArray.length
         return Object.keys(this.user.posts).length
-      }
-    },
-    filters: {
-      humanFriendlyDate (date) {
-        return moment.unix(date).locale('az').format('MMMM Do YYYY, HH:mm:ss')
-      },
-      diffForHumans (date) {
-        return moment.unix(date).fromNow()
       }
     }
   }
