@@ -33,12 +33,8 @@
 
 <script>
   import sourceData from '@/data.json'
-  import AppDate from './AppDate'
   export default {
     name: 'ThreadListItem',
-    components: {
-      AppDate
-    },
     props: {
       thread: {
         required: true,
